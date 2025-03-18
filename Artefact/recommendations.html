@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sleep Health - Recommendations</title>
+    <link rel="stylesheet" href="static/style.css">
+
+    <script>
+
+        // Find occupation with average sleep hrs closest to users input of sleep hrs
+        // Return occupation and the average hrs of sleep for said occupation
+        function get_closest_occupation(hoursInput) {
+            let sleepOccupation_data = {
+                {% for job, hours in job_sleep.items() %}
+                '{{ job }}': {{ hours }},
+                {% endfor %}
+            };
+
+            let closest_occupation = null;
+            let real_hours = null;
+            let small_difference = Infinity; // Start with biggest num possible
+
+            for (let job in sleepOccupation_data) {
+                let hours = sleepOccupation_data[job];
+                let difference = Math.abs(hours - hoursInput);
+
+                if (difference < small_difference) {
+                    small_difference = difference;
+                    closest_occupation = job;
+                    real_hours = hours;
+                }
+            }
+            return [closest_occupation, real_hours];
+        }
+
+        // Get average steps and BMI category of user
+        // Make comparison with average daily steps under chosen BMI category and user
+        // Output suitable recommendation based on calculations
+        function getandshow_steps(event) {
+            event.preventDefault();
+            console.log('Prevented');
+
+            let bmiInput = document.getElementById('bmiInput');
+            let bmi = bmiInput.options[bmiInput.selectedIndex].text;
+            let stepsInput = document.getElementById('stepsInput').value;
+            console.log(stepsInput);
+          
+            let recommend = null; // Initialise as empty
+
+            let stepsAvg = bmiInput.value;
+            let difference = parseInt(stepsInput) - stepsAvg;
+            console.log(stepsAvg);
+
+
+            if (difference > 0) {
+                recommend = `As someone with a BMI of '${bmi}', you beat the average daily ${stepsAvg} steps by ${difference} steps. Great job :)`;
+            } else if (difference < 0) {
+                recommend = `As someone with a BMI of ${bmi}, to beat the average daily ${stepsAvg} steps for category ${bmi}, you need ${Math.abs(difference)} more step(s).`;
+            } else {
+                recommend = `As someone with a BMI of ${bmi}, you get the exact average daily ${stepsAvg} steps.`;
+            }
+
+            document.getElementById('steps_recommendation').textContent = recommend; 
+        }
+
+        // Display hours of sleep for users chosen occupation
+        function show_sleephrs() {
+            let jobs = document.getElementById('jobs');
+            console.log(jobs);
+            document.getElementById('sleep_recommendation').textContent =
+                `As a ${jobs.options[jobs.selectedIndex].text} the average hours of sleep people in your occupation get is ${jobs.value} hours.`;
+        }
+
+        // Recommend occupation based on users chosen hours of sleep
+        // Use data from previous function to output recommendation
+        function show_occupation(event) {
+            console.log(event);
+
+            let hoursInput = document.getElementById('hoursInput').value;
+            if (hoursInput == null || hoursInput == "") {
+                return;
+            } 
+            
+            let [job, job_sleephours] = get_closest_occupation(hoursInput);
+            document.getElementById('job_recommendation').textContent =
+                `If you want an average of ${hoursInput} hours of sleep, the most suited occupation is ${job}!
+                    ${job}s get an average ${job_sleephours} hours of sleep.`;
+        }
+    </script>
+</head>
+
+<body>
+    <CENTER>
+        <!-- Navigation bar -->
+        <ul>
+            <li><a href="index.html">G R A P H S</a></li>
+            <li><a href="form.html">F O R M </a></li>
+            <li><a href="recommendations.html">R E C O M M E N D A T I O N S</a></li>
+        </ul>
+    </CENTER>
+
+    <div class="body-recommend">
+        <h1 class="title">Recommendations</h1>
+
+        <h3>This page displays analysis and recommendations based on the dataset of Sleep Health and Habits.</h3>
+
+        <div class="recommendContainer">
+            <h2>Choose an occupation</h2>
+            <form>
+                <label for="jobs">Occupation:</label>
+                <select id="jobs" name="jobs", onchange="show_sleephrs()">
+                    <option value="">--Please choose an option--</option> 
+                    {% for hours, job in job_sleep.items() %}
+                    <option value="{{ job }}">{{ hours }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <p class="recommendP" id="sleep_recommendation"></p>
+        </div>
+        <br>
+
+        <div class="recommendContainer">
+            <h2>Enter hours of sleep</h2>
+            <form id="recommend_jobfromHours">
+                <label for="hoursInput">Hours:</label>
+                <input type="number" id="hoursInput" name="hoursInput" step="0.1" oninput="show_occupation(event)" required>
+
+            </form>
+            <p id="job_recommendation"></p>
+        </div>
+        <br>
+    
+        <div class="recommendContainer">
+            <h2>Choose your BMI category and daily steps</h2>
+            <form id="recommend_stepsfromBMI" onsubmit="getandshow_steps(event)">
+                <label for="bmiInput">BMI category:</label>
+                <select id="bmiInput" name="bmiInput" required>
+                    <option value="">--Please choose an option--</option> 
+                    {% for bmi, steps in bmi_steps.items() %}
+                    <option value="{{ steps }}">{{ bmi }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <br>
+
+                <label for="stepsInput">Daily steps:</label>
+                <input type="number" id="stepsInput" name="stepsInput" required>
+                <br>
+                <br>
+                <button type="submit">Get recommendation</button>
+                <br>
+            </form>
+            <p id="steps_recommendation"></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>Sleep Health - Form</title>
+    <link rel="stylesheet" href="static/style.css">
+
+    <script type='module'> // Module allows me to import
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+        // My web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoYRiDRAfUvQXMlsa6HL1t-lcYUMn5uj4",
+            authDomain: "lc-sandbox-c942a.firebaseapp.com",
+            databaseURL: "https://lc-sandbox-c942a-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "lc-sandbox-c942a",
+            storageBucket: "lc-sandbox-c942a.firebasestorage.app",
+            messagingSenderId: "294122872388",
+            appId: "1:294122872388:web:517a9835b24d8b117b2611"
+        };
+
+        // Initialise Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+        const database = getDatabase(); // This creates a firebase instance
+
+        let Form = document.getElementById('Form');
+        Form.addEventListener('submit', send_toDS);
+
+        // Updates the displayed value of the range
+        const activityRange = document.getElementById('activity');
+        const startValue = document.getElementById('startValue');
+
+        activityRange.addEventListener('input', function () {  // Input is when we move the slider and input is changed 
+            startValue.textContent = activityRange.value;  // This changes the start value (30) to the chosen value in the given range available
+            console.log('range');
+
+        });
+
+        // Function to upload the data from the form to my database
+        function send_toDS(event) {
+            const form = document.getElementById('Form'); // This gets the form itself (needed for the radio to get the specific value!)
+            // Creating a dictionary to store the values from the Form
+            let profile = {};
+            let name = document.getElementById('name').value.trim();
+            if (name == "") {
+                event.preventDefault();
+                alert("Name entered is invalid! Please change it and try again.")
+                return false;
+            }
+
+            let age = document.getElementById('age');
+
+            profile['Name'] = name;
+            profile['Age'] = +age.value; // The + converts str to number
+            profile['Gender'] = form.gender.value;
+            profile['Daily Activity (mins)'] = +form.activity.value;
+            profile['Hours of sleep'] = +form.sleephrs.value; // Had idea to use range of minutes instead of float number input 
+
+
+            // Here I upload the data to the database and have a specific table for the Forms, sorted by 'name' of person
+            update(ref(database, 'Forms/' + name), profile)
+            alert('Thank you for your input!');
+
+            form.reset();
+        }
+    </script>
+</head>
+
+<body>
+    <CENTER>
+        <!-- Navigation bar -->
+        <ul>
+            <li><a href="index.html">G R A P H S</a></li>
+            <li><a href="form.html">F O R M </a></li>
+            <li><a href="recommendations.html">R E C O M M E N D A T I O N S</a></li>
+        </ul>
+    </CENTER>
+
+    <h1 class="title">Sleep Health </h1>
+
+    <h3>This page allows for input of new data from users and displays a summary of all collected data.</h3>
+   
+    <h2 class="title-border">FORM</h2>    
+    <form id='Form' action="/form.html">
+        <label for='name'>Enter your name:</label>
+        <input type='text' id='name' name='name' pattern="[a-zA-Z '\-áéíóúÁÉÍÓÚ]*" 
+        title='Name should only contain letters, spaces, dashes, fadas and apostrophes!'required><br><br>
+        <label for='age'>Enter your age:</label>
+        <input type='number' id='age' min='1' max='125' name='age' required><br><br>
+
+        <label>Enter your gender:</label><br>
+        <label>
+            <input type='radio' id='male' name='gender' value='Male' required>Male
+        </label>
+        <br>
+        <label>
+            <input type='radio' id='female' name='gender' value='Female' required>Female
+        </label>
+        <br><br>
+
+        <label>Enter the average minutes of physical activity you get per day:</label>
+        <input type='range' id='activity' min='0' max='180' name='activity' value="30" required>
+        <span id='startValue'>30</span>
+        <span id='display'>mins</span> <br><br>
+
+        <label for='sleephrs'>Enter how many hours of sleep (on average) you get per night:</label>
+        <input type="number" id='sleephrs' step="0.1" min='1' max='23' name='sleephrs' required><br>
+
+        <input type="submit" value="SUBMIT">
+    </form>
+
+    <div>
+        <h2 class="title-border">SUMMARY</h2>
+        <div class="summarybox">
+            <div>{{ bar_chart | safe }}</div>
+            <div>{{ pie_chart | safe }}</div>
+        </div>
+    </div>
+</body>
