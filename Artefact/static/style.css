@@ -1,0 +1,214 @@
+.centered-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    background-color:#bd94a0;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; 
+}
+
+.box-image {
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.box-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+body {
+    background-color: #d9d4c6;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+
+}
+
+.body-recommend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 50px;
+    font-family: 'Yeseva One';
+}
+
+.title-border {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #543e29;
+}
+
+.title-border::before,
+.title-border::after {
+    content: '';
+    flex: 1;
+    margin: 0 10px;
+    border-bottom: 2px dotted;
+}
+
+.margin-left {
+    margin-top: -20px;
+    font-family: 'Yeseva One';
+    margin-left: 12cm;
+    color: #66401c;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+h1 {
+    color: #66401c;
+    font-size: 30px;
+    font-family: 'Yeseva One';
+    text-align: center;
+}
+
+
+h2 {
+    text-align: center;
+    color: #543e29;
+    font-size: 26px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h3 {
+    font-family: "HCo Archer SSm";
+    font-weight: 480;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
+
+p {
+    font-family: "HCo Archer SSm";
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    font-weight: normal;
+    line-height:  1.7em;
+}
+
+
+button {
+    width: 140px;
+    height: 40px;
+    background-color: #79B791;
+    color: white;
+    border-radius: 3px;
+    font-family: 'Work Sans', sans-serif;
+    border: 0px;
+    margin: 0 10px;
+}
+
+input[type="submit"] {
+    width: 140px;
+    height: 40px;
+    background-color: #79B791;
+    color: white;
+    border-radius: 3px;
+    font-family: 'Work Sans', sans-serif;
+    border: 0px;
+    margin: 10px;
+    margin-left: 40%;
+}
+
+.switchButton {
+    display: flex; 
+    margin-bottom: 5px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.switchButton .active {
+    background-color: #b4e7f3;
+    color: white;
+}
+
+.switchButton .centre {
+    text-align: center;
+}
+
+button:hover {
+    background-color: #b4e7f3;
+    transition: 1s;
+}
+
+ul {
+    margin: auto;
+    list-style-type: none;
+    border-top: 2px solid #9D8189;
+    border-bottom: 2px solid #9D8189;
+    background-color: #e1afc4;
+}
+
+li {
+    display: inline;
+    font-family: 'HCo Archer SSm';
+    font-weight: 800px;
+}
+
+li a {
+    display: inline-block;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: #e7799a;
+}
+
+#Form {
+    margin-block-start: 1.5cm;
+    margin-inline-start: 15cm;   
+    margin-inline-end: 15cm;
+    line-height: 26.8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.summarybox {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    align-content: space-around;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.recommendContainer {
+    background-color: #9D8189;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendP {
+    margin-top: 20px;
+}
