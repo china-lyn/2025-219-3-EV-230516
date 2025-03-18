@@ -3,7 +3,8 @@ To run you need to install:
 1) firebase_admin
 2) pandas
 3) plotly
-4) flask
+4) kaleido
+5) flask
 
 Steps to run:
 
