@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sleep Health and Habits Report</title>
+    <style>
+        body {
+            background-color: #d9d4c6;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+
+        }
+
+        h1 {
+            color: #66401c;
+            font-size: 25px;
+            font-family: 'Yeseva One';
+            text-align: center;
+        }
+
+
+        h2 {
+            text-align: center;
+            color: #543e29;
+            font-size: 26px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        h3 {
+            padding-left: 10%;
+            color: #512e1f;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        p {
+            font-family: "HCo Archer SSm";
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            font-weight: normal;
+            line-height: 1.7em;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        ul {
+            font-family: "HCo Archer SSm";
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            font-weight: normal;
+            line-height: 1.7em;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        ol {
+            font-family: "HCo Archer SSm";
+            font-size: 18px;
+            letter-spacing: 0.01em;
+            font-weight: normal;
+            line-height: 1.7em;
+            padding-left: 15%;
+            padding-right: 10%;
+        }
+
+        code {
+            font-size: 16px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        #nav-bar {
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+            text-align: center;
+            z-index: 100;
+            /*Ensures nav bar stays over all the text*/
+        }
+
+        #nav-bar ul {
+            margin: auto;
+            list-style-type: none;
+            border-top: 2px solid #9D8189;
+            border-bottom: 2px solid #9D8189;
+            background-color: #e1afc4;
+        }
+
+        #nav-bar li {
+            display: inline;
+            font-family: 'HCo Archer SSm';
+            font-weight: 800px;
+
+        }
+
+        #nav-bar li a {
+            display: inline-block;
+            color: black;
+            padding: 6px;
+            text-decoration: none;
+        }
+
+        #navbar li a:hover {
+            color: #e7799a;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flowchart-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .flowchart-container img {
+            max-height: 900px;
+        }
+
+        .title-border {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #543e29;
+        }
+
+        .title-border::before,
+        .title-border::after {
+            content: '';
+            flex: 1;
+            margin: 0 10px;
+            border-bottom: 2px dotted;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #543e29;
+            font-size: 23px;
+            padding-left: 0px;
+        }
+
+        .arrows {
+            list-style-type: none;
+        }
+
+        .arrows li::before {
+            content: '➯';
+            color: rgb(71, 39, 58);
+            margin-right: 10px;
+            padding-left: 10px;
+            font-size: larger;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(126, 109, 114);
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #d1acc8;
+        }
+
+        .name {
+            background-color: #dbc2ca;
+        }
+
+        .ages {
+            background-color: #cdc3d4;
+        }
+
+        .sleeps {
+            background-color: #cfc9d4;
+        }
+
+        .exercise {
+            background-color: #d4c0c0;
+
+        }
+
+        .pass {
+            color: green;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .table-left {
+            text-align: left;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            background-color: #bd94a0;
+            border-radius: 10%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 100%;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .centered-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .centered-container p {
+            padding-right: 20px;
+            margin: 0;
+        }
+
+        .centered-container img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        .ribbon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .ribbon-img {
+            display: block;
+            margin-left: 110px;
+            width: 150px;
+        }
+
+        .ribbon-text {
+            margin-left: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15px;
+            text-align: center;
+            color: #512e1f;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .screenshot {
+            margin-left: 20px;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <div id="nav-bar">
+        <ul>
+            <li><a href="#top">HOME</a></li>
+            <li><a href="#meetingthebrief">MEETING THE BRIEF</a></li>
+            <li><a href="#investigation">INVESTIGATION</a></li>
+            <li><a href="#plandesign">PLAN & DESIGN</a></li>
+            <li><a href="#create">CREATE</a></li>
+            <li><a href="#evaluation">EVALUATION</a></li>
+            <li><a href="#references">REFERENCES</a></li>
+            <li><a href="#wordcount">WORD COUNT</a></li>
+        </ul>
+    </div>
+    <h1 class="title">Report</h1>
+
+    <a id="meetingthebrief"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">MEETING THE BRIEF</h2>
+    <p class="center">This is my video which demonstrates my artefact in operation.</p><br>
+
+    <div class="centered-container">
+        <video title="Meeting the brief" width="70%" controls>
+            <source src="meetingthebrief.mp4" type="video/mp4">
+            Cannot load video :(
+        </video>
+    </div>
+
+
+    <a id="investigation"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">INVESTIGATION</h2>
+
+    <p>As a starting point, I researched datasets using Kaggle.com and data.gov.ie provided in the brief.
+        During my investigation of different topics to analyse, I was initially drawn to a select few datasets,
+        including:</p>
+
+    <img id='topics' title='Topics research' width='60%'' img src=' choosedataset2.jpg' alt='image cannot load :('>
+
+    <p>I have an interest in marine biology and thought this could be an interesting topic to explore. I believe in
+        understanding the ocean and its organisms we create an awareness of conservation and the importance of our
+        environment. I found a few reliable datasets related to this topic. However, after my initial investigation of
+        each, I quickly realised how complex these topics would be. Firstly, the data given was rather complicated to
+        understand, making it difficult to create visual representations. I almost felt there was an overload of
+        information to process. In addition to this, I realised the data was slightly outdated and I felt I needed more
+        current information to fit the brief.</p>
+
+    <p>I then became interested in the idea of books and reading, and I explored the different datasets which were
+        relevant. I settled on a rather simple dataset which investigated 'Reading Habits'. Given age, gender, book
+        genre, reading time and how their books affected their mood, I could analyse the true effect of reading on
+        society. While I admit this is an interesting topic which undoubtedly intrigued me, I found it lacking in
+        information. I felt the data wasn't sufficient, the idea of a dataset relating to habits was still something I
+        was interested in.</p>
+
+    <p>Finally, I settled on the topic of Sleep Health. I chose this topic because I believe our sleep health is highly
+        relevant and important to be aware of. I am interested in finding solutions to maximise our sleep quality and
+        experience. The dataset I found had apt information and fit the brief. My information system would aim to
+        provide evidence of how different aspects of our lives affect our sleep. Including: occupation, daily exercise
+        and steps, even one's gender. I want to convey that sleep plays a vital role in our lives, dictating many
+        aspects of life which might seem unrelated. This could encourage certain habits among young people while
+        shedding light on the impact of our habits and lifestyle in relation to our sleep.</p>
+
+    <p>My information system can be useful to young people deciding on a career and evaluating future lifestyle choices,
+        yet also valuable to older adults who want to better understand the impact of their daily activities on their
+        sleep and vice versa. The age range of my data is [27 to 59 years].</p>
+
+    <p>The image below shows some of the websites and information systems I was inspired by during my research,
+        alongside their pros and cons:</p>
+
+    <img id='inspo' title='Information systems research' width='60%' img src='inspos.jpg' alt='image cannot load :('>
+
+    <a id="plandesign"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">PLAN AND DESIGN</h2>
+
+    <p>I chose to explore the effect of our habits and lifestyle on our sleep and vice versa, to gain a better
+        understanding of these vital connections and help inform users. My project will target people of any age between
+        16 to 60, who are interested in
+        health, lifestyle habits and sleep. I will use the agile software development method to develop my project.</p>
+
+    <p>My interactive information system will meet both the basic and advanced requirements of the brief. <br> My
+        information system:</p>
+    <ul class="arrows">
+        <li>Aims to help people understand the impact of their lifestyle on their
+            sleep.</li>
+        <li>Offers easily accessible advice and information.</li>
+        <li>Displays interactive understandable graphs and visualisations which show statistics.</li>
+        <li>Collects and stores data from user input under a survey form</li>
+        <li>Makes recommendations based on data from my analysed dataset. These predictions aid in future decisions and
+            offer advice.</li>
+    </ul>
+
+    <p>Because my survey form collects user data, including name, age, gender, activity and sleep levels.
+        I am conscious of the ethical questions which may arise, so I never display real names in my summary of user
+        feedback.
+        Furthermore, this particular dataset may not be entirely accurate. Hence, the website does not give medical
+        advice.
+        This should be a noted disclaimer.</p>
+
+    <p>I am using Python, HTML, CSS, JavaScript, Visual Studio and Thonny for this project.</p>
+    <ul class="arrows">
+        <li>PYTHON: Pandas, Firebase, Plotly, Flask.</li>
+        <ul class="arrows">
+            <li>Pandas: cleaning data and converting dictionaries to dataframes for charts.</li>
+            <li>Firebase: To store my cleaned data and user data from the survey form.</li>
+            <li>Plotly: To render my interactive graphs.</li>
+            <li>Flask: Act as my webserver, links my three pages together.</li>
+        </ul>
+        <li>JS: Firebase, Plotly using generated charts (indirect).</li>
+    </ul>
+
+    <p>I will be using OBSstudio to record my video and KDENlive for the editing portion.</p><br>
+
+    <p>Here is an Architecture Diagram which shows the interaction between the different components of my system:</p>
+    <img src='systarchitecture.jpg' title='Artefact System Architecture' alt='image cannot load :(' width='50%'>
+
+
+    <p>Here is a wireframe drawing of my design plan for the website:</p>
+    <img src='wireframe.jpg' title='Wireframe for website' alt='image cannot load :(' width="60%"><br><br>
+
+
+    <h3 class="subtitle">Flowcharts</h3>
+    <div class="flowchart-container">
+        <div>
+            <img src='cleaningflowchart.jpg' title='Cleaning Flowchart' alt='image cannot load :('>
+            <p>Data cleaning flowchart</p>
+        </div>
+
+        <div>
+            <img src='processingflowchart.jpg' title='Processing Flowchart' alt='image cannot load :('>
+            <p>Flowchart for processing data and generating graphs</p>
+        </div>
+
+        <div>
+            <img src='sleephealthflowchart.jpg' title='Flask Flowchart' alt='image cannot load :('>
+            <p>Flask website flowchart</p>
+        </div>
+    </div>
+
+    <a id="create"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">CREATE</h2>
+
+    <h2 class="subtitle">Progress Log</h2>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 1</div>
+    </div>
+    <ul>
+        <li>Researched datasets available on: Kaggle.com, libguides.ucd.ie, data.gov.ie.</li>
+        <li>Chose 'Sleep Health' as topic, decided on final dataset.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 2</div>
+    </div>
+    <ul>
+        <li>Created flowcharts for cleaning, analysing and executing files in Python.</li>
+        <li>Drew up wireframe plans for layout and corresponding pages.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 3</div>
+    </div>
+    <ul>
+        <li>Researched basic usage of pandas and successfully loaded dataset from CSV file.</li>
+        <li>Wrote script to clean data using pandas, removing unneeded fields and fixing inconsistencies.</li>
+        <li>Created Firebase database instance and stored cleaned data under 'Dataset' table.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 4</div>
+    </div>
+    <ul>
+        <li>Generated PNGs for BMI pie charts and interactive bar charts using Plotly in Python.</li>
+        <li>Noticed some dataset values were duplicate, with identical data values stored under different names,
+            e.g. 'Normal Weight' and 'Normal'. Updated cleaning script.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 5</div>
+    </div>
+    <ul>
+        <li>Created algorithm for line chart, generated line chart.</li>
+        <li>Updated colour schemes for graphs and added titles and backgrounds to all charts using Plotly.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 6</div>
+    </div>
+    <ul>
+        <li>Used JavaScript and HTML for index page.</li>
+        <li>Made BMI PNGs interactive.</li>
+        <li>Changed BMI pie chart PNGs to SVGs to get sharper images.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 7</div>
+    </div>
+    <ul>
+        <li>Used JavaScript to code survey form page of website.</li>
+        <li>Added dynamic graphs to Form page.</li>
+        <li>Added functions to upload data from survey form to Firebase DB, display range of minutes of physical
+            activity.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 8</div>
+    </div>
+    <ul>
+        <li>Created recommendations page.</li>
+        <li>Used Python to calculate average hours of sleep and daily steps and create new dictionaries to store the
+            data.
+            Display on page using Flask.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 9</div>
+    </div>
+    <ul>
+        <li>Used Jinja2 templating and JavaScript to generate recommendations and display analysis.</li>
+        <li>Created CSS style sheets for all three pages.</li>
+        <li>Updated form with error checking for input validation using test table.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 10</div>
+    </div>
+    <ul>
+        <li>Created HTML report.</li>
+        <li>Updated style sheets to make graphs easier to see.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 11</div>
+    </div>
+    <ul>
+        <li>Recorded video demonstrating project.</li>
+        <li>Used KDENlive to edit my video.</li>
+    </ul>
+
+    <div class="ribbon">
+        <img src="ribbon.png" alt="banner" class="ribbon-img">
+        <div class="ribbon-text">Week 12</div>
+    </div>
+    <ul>
+        <li>Completed final report write up.</li>
+    </ul>
+
+    <h2 class="subtitle">Testing</h2>
+    <p style="padding-left: 300px; padding-right: 300px;">During my project I carried out a lot of
+        unit testing and white-box testing.
+        I also had my classmates carry out some black-box testing on the finished project to ensure that it was working
+        properly.<br><br></p>
+    <p class="center">Below is a test table of some of the tests I carried out on the user survey:</p>
+
+    <table>
+        <tr>
+            <th>Input Field</th>
+            <th>Test Description</th>
+            <th>Test Data (input)</th>
+            <th>Expected Outcome</th>
+            <th>Actual Outcome</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td class="name">Name input</td>
+            <td>Accept first name and surname</td>
+            <td>Heather Casey</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name input</td>
+            <td>Accept surname with apostrophes</td>
+            <td>Liam O'Loinsigh</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name input</td>
+            <td>Accept name with dash</td>
+            <td>Amy-Rose</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name input</td>
+            <td>Accept name with fada</td>
+            <td>Seán</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name Input</td>
+            <td>Reject special charachters</td>
+            <td>Davy!</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name Input</td>
+            <td>Reject numbers</td>
+            <td>alex45</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">Name Input</td>
+            <td>Reject empty input</td>
+            <td></td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="ages">Age <Img:srcset></Img:srcset>nput</td>
+            <td>Reject age above 125 years</td>
+            <td>222</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="ages">Age Input</td>
+            <td>Accept ages in range 1-125 years</td>
+            <td>17</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="ages">Age Input</td>
+            <td>Reject age less than 1 year</td>
+            <td>0</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="ages">Age Input</td>
+            <td>Reject empty input</td>
+            <td></td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="sleeps">Sleep Hours Input</td>
+            <td>Accept hours in range 1-23 hours</td>
+            <td>7</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="sleeps">Sleep Hours Input</td>
+            <td>Reject hours less than 1 hour</td>
+            <td>0</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="sleeps">Sleep Hours Input</td>
+            <td>Reject hours over 23 hours</td>
+            <td>24</td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="sleeps">Sleep Hours Input</td>
+            <td>Reject empty input</td>
+            <td></td>
+            <td>Data rejected</td>
+            <td>Data rejected</td>
+            <td class="pass">✔️</td>
+        </tr>
+        <tr>
+            <td class="exercise">Exercise Input</td>
+            <td>Input only allows range of 0-180 minutes</td>
+            <td>30</td>
+            <td>Data accepted</td>
+            <td>Data accepted</td>
+            <td class="pass">✔️</td>
+        </tr>
+    </table>
+
+    <h3 class="subtitle">Problem encountered: Form input validations</h3>
+    <p>When working on my Form I faced a few issues concerning input validation:</p>
+    <ul>
+        <li>The name input field used the required attribute to ensure the user entered a name before submitting. But I
+            found it is still possible to submit an empty name with just spaces which would fail to upload to Firebase.
+            Additionally, when users input certain characters, the upload to Firebase DB could fail due to limitations
+            of what Firebase considers valid.
+            <ul class="arrows">
+                <li>I wrote a small validator in JavaScript to trim spaces from the input and alert the user if the
+                    trimmed name was empty.</li>
+                <img src="problem1.png" title="Javascript to trim and check for spaces" alt="screenshot cannot load :("
+                    style="width:65%; height: auto;" class="screenshot"><br>
+
+                <li>Handling special characters was a bit more difficult, but I discovered the
+                    pattern attribute could be used for input validation with regular expressions. I used this to limit
+                    what characters could be used for the name input field, otherwise it would display a suitable error
+                    message.</li>
+                <img src="problemregexp.png" title="Input with regular expression pattern"
+                    alt="screenshot cannot load :(" style="width:90%; height: auto;" class="screenshot">
+            </ul>
+        </li><br>
+        <li>The age input type number field accepted any number, which isn't realistic for ages.
+            <ul class="arrows">
+                <li>I used the min and max attributes to set a sensible age range.</li>
+            </ul>
+        </li>
+        <li>The sleep hours input was similar, so I also used min and max, but I wanted to accept decimal numbers
+            (float) here.
+            <ul class="arrows">
+                <li>I found the step attribute which allowed me to accept floats.</li>
+                <img src="problemstepmin.png" title="Input number with decimal step" alt="screenshot cannot load :("
+                    style="width:80%; height: auto;" class="screenshot">
+            </ul>
+        </li>
+    </ul><br><br>
+
+    <h3 class="subtitle">Analysis Algorithms</h3>
+    <h3>Algorithm for sleep quality by age and gender line chart</h3>
+
+    <div class="centered-container">
+        <p style="padding-right:200px;">I created a line chart to display sleep quality based on age and separated by
+            gender.
+            My function takes in my dataset from the Firebase DB, which is in list format. Each entry is a dictionary:
+        </p>
+        <img src="screenshotdb.png" title="Firebase DB Dataset" width="70%" alt="screenshot of database">
+    </div>
+
+    <p>I create two dictionaries (one for each gender) to store age and sleep quality.</p>
+    <ol>
+        <li>For each entry in the dataset, get age, sleep quality and gender.
+            <ol type="a">
+                <li>If gender is female, when age key does not yet exist, create key in female dictionary using age with
+                    a list containing the sleep quality value.
+                    Subsequent dataset entries with the same age will have the sleep quality value appended to this
+                    list.</li>
+                <li>If gender is male, when age key does not yet exist, create key in male dictionary using age with a
+                    list containing the sleep quality value.
+                    Subsequent dataset entries with the same age will have the sleep quality value appended to this
+                    list.</li>
+            </ol>
+            <img src='lineage1.png' title="Code snippet 1" alt='image cannot load :('>
+        </li>
+        <li>Sort both female and male dictionaries by age.</li>
+        <li>Using these two dictionaries, calculate average sleep quality for each age by gender:
+            <ol type="a">
+                <li>Get sum of all sleep quality entries, divided by the number of total entries.</li>
+                <li>Add age to a list and average sleep quality to another list that will be used in the graph. There
+                    will be two lists for each gender.</li>
+            </ol>
+            <img src='lineage3.png' title="Code snippet 2" alt='image cannot load :('>
+        </li>
+    </ol>
+    <p>I then add these two lists to a dictionary and using pandas I convert the dictionary to a dataframe which is used
+        by Plotly. Since I am separating my data by gender, I have two dataframes. I use pandas to combine these two
+        dataframes with pd.concat. Plotly can then generate the line chart as a html file to my local disk.</p>
+
+    <img src='combinedf.png' title="Code snippet 3" alt='image cannot load :('>
+
+    <h3>Pseudo Code</h3>
+
+    <blockquote>
+        <pre><code>
+        START 
+        SET female_dictionary 
+        SET male_dictionary 
+
+        FOR each entry in the dataset
+            SET age, sleep_quality and gender 
+            IF gender is 'Female' THEN
+                IF age NOT already in female_dictionary THEN 
+                    SET age as key and create list value with sleep_quality as first item in list
+                ELSE
+                    APPEND sleep_quality value to list under age key     
+                END IF
+            ELSE IF gender is 'Male' THEN
+                IF age NOT already in male_dictionary THEN
+                    SET age as key and create list value with sleep_quality as first item in list 
+                ELSE        
+                    APPEND sleep_quality value to list under age key
+                END IF
+            END IF 
+        END FOR 
+     
+        SET female_ages_list   
+        SET female_sleep_quality_list 
+
+        FOR each age key in the SORTED female_dictionary
+            SET value list to quality
+            SET average as SUM of quality DIVIDED by LENGTH of quality
+            APPEND age to female_ages_list
+            APPEND average to female_sleep_quality list
+        END FOR        
+
+        SET male_ages_list        
+        SET male_sleep_quality_list
+
+        FOR each age key in the SORTED male_dictionary
+            SET value list to quality
+            SET average as SUM of quality DIVIDED by LENGTH of quality
+            APPEND age to male_ages_list
+            APPEND average to male_sleep_quality list
+        END FOR        
+        END
+    </code></pre>
+    </blockquote><br>
+
+    <h3>Algorithm for BMI and sleep disorders pie charts</h3>
+    <p>I created three pie charts which calculate the percentage of people under each BMI category: Normal, Overweight
+        and Obese. One displays the overall BMIs, the other two explore the possible correlations of BMI and sleep
+        disorders. </p>
+    <ol>
+        <li>Initialise counts to 0 for each BMI category, three separate counts for each chart.</li>
+        <li>For each entry in the dataset, if BMI category is 'Normal', add 1 to overall normal count.
+            <ol type="a">
+                <li>If sleep disorder is sleep apnea, add 1 to sleep apnea normal count.</li>
+                <li>If sleep disorder is insomnia, add 1 to insomnia normal count.</li>
+                <img src='pie2.png' alt='image cannot load :(' class="screenshot">
+            </ol>
+        </li>
+
+        <li>Do the same steps in #2 for overweight and finally obese BMI categories.</li>
+        <img src='pie3.png' alt='image cannot load :(' class="screenshot">
+        <img src='pie3.1.png' alt='image cannot load :(' style="margin-top: 0%;" class="screenshot">
+
+        <li>If value of BMI is none of the three recognised categories, print warning and display invalid value.</li>
+        <img src='pie4.png' alt='image cannot load :(' class="screenshot">
+
+        <li>I add my counts to a dictionary with their category titles.</li>
+        <img src='piedict.png' alt='image cannot load :(' class="screenshot">
+    </ol>
+
+    <p>I use pandas to convert these dictionaries to dataframes for Plotly.</p>
+    <img src='piedf.png' alt='image cannot load :(' style="width:34%; height: auto; margin-left: 173px;">
+
+    <p>The percentages are automatically calculated by Plotly when rendering the pie charts. I generated these pie
+        charts as SVG files on my local disk.</p>
+
+    <h3>Pseudo Code</h3>
+
+    <blockquote>
+        <pre><code>
+                START
+                SET normal_count to 0
+                SET overweight_count to 0
+                SET obese_count to 0 
+
+                FOR each entry in the dataset                
+                    IF 'BMI Category' is equal to 'Normal' THEN
+                        ADD 1 to normal_count 
+                    ELSE IF 'BMI Category' is equal to 'Overweight' THEN 
+                        ADD 1 to normal_count
+                    ELSE IF 'BMI Category' is equal to 'Obese' THEN            
+                        ADD 1 to obese_count
+                    ELSE
+                        PRINT warning
+                    END IF
+                END FOR
+                END 
+            </code></pre>
+    </blockquote><br>
+
+    <h3>Algorithm for sleep and age bar chart</h3>
+    <p>A bar chart of average hours of sleep under each age.
+        First, I initialise a dictionary where I will store all values of sleep hours and all ages.</p>
+
+    <ol>
+        <li>For each entry, get age as a string input.</li>
+        <li>If age key is not in dictionary: add age to dictionary as key, all the sleep durations of that age will be
+            appended to this list we loop over the dataset.</li>
+        <li>Sort age values in dictionary and calculate average hours of sleep under each age group.</li>
+        <li>Add age key to a list and average sleep hours to another list to be used in the graph.</li>
+    </ol>
+
+    <p>These two bar charts were interesting. I only had to prepare the data while Plotly handled the algorithms for me.
+        They are grouped bar charts and show all BMI values under each occupation. Both grouped by occupation and one
+        displays a count of people, while the other displays a percentage value.</p>
+    <p>The main challenge for this was reading the Plotly documentation and finding which one suited the visualisation I
+        was looking for: the grouped x-axis values.</p>
+
+    <h3>Pseudo Code</h3>
+
+    <blockquote>
+        <pre><code>
+        START
+        SET get_data dictionary
+    
+        FOR each entry in the dataset
+            SET age as STRING 'Age' value 
+            IF age NOT already in get_data THEN 
+                SET age as key and create list value with 'Sleep Duration' as first item in list
+            ELSE
+                APPEND 'Sleep Duration' value to list under age key
+            END IF
+        END FOR 
+    
+        SET ages_list 
+        SET sleep_list
+    
+        FOR each age key in the SORTED get_data dictionary
+            SET value list to sleep_hours
+            SET average as SUM of sleep_hours DIVIDED by LENGTH of sleep_hours
+            APPEND age to ages_list
+            APPEND average to sleep_list
+        END FOR
+        END
+    </code></pre>
+    </blockquote>
+
+    <a id="evaluation"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">EVALUATION</h2>
+
+    <p>My final artefact meets both the basic and advanced requirements set out in the brief.</p>
+    <h3>Basic requirements</h3>
+    <ul>
+        <li>I used Python to extract and clean my dataset, then uploaded it to my Firebase DB.</li>
+        <li>My artefact analyses cleaned data, loaded from my DB. Generates interactive visualisations including pie
+            charts, bar charts and a line chart which display different dataset aspects. I used lists and dictionaries
+            for my data analysis.</li>
+        <li>I used HTML, CSS and JavaScript to present my analysis and visualisations in my website. Flask is used to
+            provide a web server which serves my pages and dynamically serves portions of pages using Jinja2 templating.
+        </li>
+    </ul>
+
+    <h3>Advanced Requirements</h3>
+    <ul>
+        <li>My visualisations are interactive, users can filter and select data to their liking.</li>
+        <li>I give information about my dataset, display the graphs including small descriptions of each graph to ensure
+            my information is easily accessible and clear.</li>
+        <li>I chose to stick to a colour scheme to implement different colours to distinguish different elements on
+            each graph. This also falls under a principle of good user interface design.</li>
+        <li>My survey form gets sleep and health input from the user. I used input types including:
+            <ul class="arrows">
+                <li>text, number, radio and range types stored in a 'Forms' table in my DB using strings, integers and
+                    floats data types. I display visualisations based on all user-input data in the summary section.
+                </li>
+            </ul>
+        <li>My recommendation page displays interactive analysis of my dataset, making recommendations to the users.
+            They input a few details, and I generate the suitable responses. I also used JavaScript for this portion of
+            the project.</li>
+    </ul>
+
+    <h3>Future Improvements</h3>
+    <p>If I had more time, I would add the following features:</p>
+    <ol>
+        <li><b>Choosing a higher quality dataset.</b> After visualising the data, a few entries seem duplicated which
+            made
+            me question the quality of the dataset. Next time I would choose dataset from a more reputable source.
+            Kaggle.com may not be the best source for high quality datasets,
+            and I would choose a larger dataset.</li>
+        <li><b>Survey form - Allow multiple identical names.</b> If an already existing name is entered, it will
+            overwrite the
+            existing data as I use the name for the entry path. I could instead use a unique ID for each entry or not
+            allow input of existing names.</li>
+    </ol>
+
+    <a id="references"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">REFERENCES</h2>
+
+    <div class="centered-container">
+        <div class="box">
+            <ul>
+                <li><a href="https://www.kaggle.com/datasets">Find Open Datasets and Machine Learning Projects |
+                        Kaggle </a></li>
+                <li><a href="https://covid19ireland-geohive.hub.arcgis.com/">Ireland's COVID19 Data Hub</a></li>
+                <li><a href="https://www.nature.com/articles/s41597-020-0533-4">High quality sleep annotations from EEG
+                        data </a></li>
+                <li><a href="https://www.sleepfoundation.org/how-sleep-works/sleep-facts-statistics">100+ Sleep
+                        Statistics - Facts and Data About Sleep 2024 | Sleep Foundation</a></li>
+                <li><a href="https://www.cdc.gov/sleep/data-research/facts-stats/adults-sleep-facts-and-stats.html">FastStats:
+                        Sleep in Adults | Sleep | CDC</a></li>
+                <li><a href="https://ourworldindata.org/happiness-and-life-satisfaction">Happiness and Life Satisfaction
+                        - Our World in Data</a></li>
+                <li><a href="https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset">Sleep Health
+                        and Lifestyle Dataset</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <a id="wordcount"></a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="title-border">WORD COUNT</h2>
+    <table>
+        <tr>
+            <th>Section</th>
+            <th>Word Count</th>
+        </tr>
+        <tr>
+            <td class="table-left">1) Meeting the brief</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td class="table-left">2) Investigation</td>
+            <td>442</td>
+        </tr>
+        <tr>
+            <td class="table-left">3) Plan and design</td>
+            <td>325</td>
+        </tr>
+        <tr>
+            <td class="table-left">4) Create</td>
+            <td>1,168</td>
+        </tr>
+        <tr>
+            <td class="table-left">5) Evaluation</td>
+            <td>361</td>
+        </tr>
+        <tr>
+            <td class="table-left"><strong>Total:</strong></td>
+            <td>2,306</td>
+        </tr>
+
+</body>
+
+</html>
